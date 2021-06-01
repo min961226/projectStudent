@@ -1,0 +1,72 @@
+package com.greedy.codeCreator.view;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import com.greedy.codeCreator.controller.StudentController;
+
+public class MainMenu {
+
+	Scanner sc = new Scanner(System.in);
+	public void displayMainMenu() {
+		StudentController studentController = new StudentController();
+
+		do {
+			System.out.println("============= 학생 관리 프로그램 =============");
+			System.out.println("1. 학생 등록");
+			System.out.println("2. 학생 전체 조회");
+			System.out.println("3. 학번으로 조회");
+			System.out.println("4. 학생 정보 수정");
+			System.out.println("5. 학생 정보 삭제");
+			System.out.println("9. 프로그램 종료");
+			System.out.print(">> 번호 입력:");
+
+			int num = sc.nextInt();
+			switch (num) {
+			case 1:
+				studentController.insertNewStudent(inputStudentInfo());
+				break;
+			case 2:
+				studentController.
+				break;
+			case 3:
+				studentController.
+				break;
+			case 4:
+				studentController.
+				break;
+			case 5:
+				studentController.
+				break;
+			case 9:
+				System.out.println("시스템을 종료합니다.");
+				return;
+			default:
+				break;
+			}
+
+		} while (true);
+	}
+
+	private Map<String, Object> inputStudentInfo() {
+		System.out.print("학번을 입력하여 주세요 :");
+		int stId = sc.nextInt();
+		sc.nextLine();
+		System.out.print("이름을 입력하여 주세요 :");
+		String stName = sc.nextLine();
+		System.out.print("성별을 입력하여 주세요 :");
+		char stGender = sc.nextLine().charAt(0);
+		System.out.print("전화번호를 입력하여 주세요 : ");
+		String stPhone = sc.nextLine();
+		
+		Map<String, Object> student = new HashMap<>();
+		student.put("id", stId);
+		student.put("name", stName);
+		student.put("gender", stGender);
+		student.put("phone", stPhone);
+		
+		return student;
+	}
+
+}
