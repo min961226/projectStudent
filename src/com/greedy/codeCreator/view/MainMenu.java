@@ -1,10 +1,13 @@
 package com.greedy.codeCreator.view;
 
+import java.awt.Label;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.greedy.codeCreator.controller.StudentController;
+import com.greedy.codeCreator.exception.StudentException;
+import com.greedy.codeCreator.exception1.StudentException1;
 
 public class MainMenu {
 
@@ -72,13 +75,23 @@ public class MainMenu {
 	}
 
 	private Map<String, Object> inputStudentInfo() {
+
+		StudentException se = new StudentException();
 		System.out.print("학번을 입력하여 주세요 :");
 		int stId = sc.nextInt();
 		sc.nextLine();
 		System.out.print("이름을 입력하여 주세요 :");
 		String stName = sc.nextLine();
+		
 		System.out.print("성별을 입력하여 주세요 :");
-		char stGender = sc.nextLine().charAt(0);
+		String stGender = sc.nextLine();
+		try {
+				se.checkGender(stGender);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.exit(0);    										//센세 said
+				
+			}
 		System.out.print("전화번호를 입력하여 주세요 : ");
 		String stPhone = sc.nextLine();
 
