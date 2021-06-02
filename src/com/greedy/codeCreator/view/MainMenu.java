@@ -9,6 +9,7 @@ import com.greedy.codeCreator.controller.StudentController;
 public class MainMenu {
 
 	Scanner sc = new Scanner(System.in);
+
 	public void displayMainMenu() {
 		StudentController studentController = new StudentController();
 
@@ -28,16 +29,16 @@ public class MainMenu {
 				studentController.insertNewStudent(inputStudentInfo());
 				break;
 			case 2:
-				studentController.
+				studentController.selectAllStudent();
 				break;
 			case 3:
-				studentController.
+				studentController.searchStudent(inputStudentID("search"));
 				break;
 			case 4:
-				studentController.
+				studentController.upDateStudent(inputStudentID("update"), inputStudentInfo());
 				break;
 			case 5:
-				studentController.
+				studentController.deleteStudent(inputStudentID("delete"));
 				break;
 			case 9:
 				System.out.println("시스템을 종료합니다.");
@@ -47,6 +48,27 @@ public class MainMenu {
 			}
 
 		} while (true);
+	}
+
+	private int inputStudentID(String str) {
+
+		switch (str) {
+		case "search":
+			System.out.print("조회를 위한 학번을 입력하여 주세요 : ");
+			break;
+		case "update":
+			System.out.println("수정을 위한 학번을 입력하여 주세요 : ");
+			break;
+		case "delete":
+			System.out.println("삭제를 위한 학번을 입력하여 주세요 : ");
+			break;
+
+		default:
+			break;
+		}
+		int num = sc.nextInt();
+
+		return num;
 	}
 
 	private Map<String, Object> inputStudentInfo() {
@@ -59,13 +81,13 @@ public class MainMenu {
 		char stGender = sc.nextLine().charAt(0);
 		System.out.print("전화번호를 입력하여 주세요 : ");
 		String stPhone = sc.nextLine();
-		
+
 		Map<String, Object> student = new HashMap<>();
 		student.put("id", stId);
 		student.put("name", stName);
 		student.put("gender", stGender);
 		student.put("phone", stPhone);
-		
+
 		return student;
 	}
 
